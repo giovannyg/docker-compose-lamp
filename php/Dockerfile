@@ -1,7 +1,9 @@
 FROM php:7.3-rc-fpm-alpine
 RUN apk update; \
-    apk upgrade;
+    apk upgrade; \
+	apk add --update nodejs npm
 RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install pdo_mysql
 RUN apk add freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev
 RUN docker-php-ext-install -j$(nproc) iconv 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ 
