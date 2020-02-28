@@ -7,6 +7,9 @@ RUN apk add --no-cache libzip-dev \
     && docker-php-ext-configure zip --with-libzip=/usr/include \
     && docker-php-ext-install zip
 
+RUN apk add --no-cache libxml2-dev && \
+    docker-php-ext-install soap
+
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo_mysql
 RUN apk add freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev
