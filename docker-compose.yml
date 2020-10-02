@@ -1,6 +1,8 @@
 version: '3.7'
 services:
   apache:
+    image: 'lamp_apache'
+    container_name: 'lamp_apache'
     build: './apache'
     restart: always
     ports: 
@@ -12,12 +14,16 @@ services:
       - php
       - mysql
   php:
+    image: 'lamp_php'
+    container_name: 'lamp_php'
     build: './php'
     restart: always
     volumes:
       - ./public_html:/usr/local/apache2/htdocs
       - ./tmp:/usr/local/tmp
   mysql:
+    image: 'lamp_mysql'
+    container_name: 'lamp_mysql'
     build: './mysql'
     restart: always
     ports:
