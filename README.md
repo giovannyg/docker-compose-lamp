@@ -1,6 +1,8 @@
 # docker-compose-lamp
 A lamp stack development environment using docker + docker-compose
 
+** Alpine images **
+
 ## Services ##
 
 * Apache 
