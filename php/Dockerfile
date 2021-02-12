@@ -23,7 +23,13 @@ RUN docker-php-ext-install -j$(nproc) gd
 COPY php.ini /usr/local/etc/php/php.ini
 
 #Composer
+WORKDIR /usr/local/bin/composer2
 RUN curl -sS https://getcomposer.org/installer | php \
-        && mv composer.phar /usr/local/bin/ \
-        && ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
+  && ln -s /usr/local/bin/composer2/composer.phar /usr/local/bin/composer \
+  && composer self-update --2 \
+  && composer global require laravel/installer 
+
+ENV PATH=~/.composer/vendor/bin:$PATH
+
+WORKDIR /usr/local/apache2/htdocs
 
